@@ -1,0 +1,57 @@
+# YAML file for model config
+
+setup:
+    n_jobs:
+    - 9
+    file_paths:
+        data_dir: './data/'
+        allele_path: './data/global_fn_nzv_clean2.tsv'
+    variables:
+        filter_prov: 'Y'
+        stratified: 'Y' 
+        optim: 'GridSearch'
+    feat_elim_params:
+        rfecv:
+            n_step: 1
+            min_features_select: 0.5
+        rfe_proportion_list: [0.4]
+    models:
+      Random_Forest: 
+            model_type: 'Random Forest'
+            param_grid:
+                n_estimators: [100, 200, 300]
+                max_depth: [20, 30]
+                min_samples_split: [2, 5]
+                min_samples_leaf: [1, 2]
+                criterion: ['gini', 'entropy']
+            save_model_path: './output'
+            results_path: './output/Output_template_combined.csv'
+      SVM: 
+           model_type: 'SVM'
+           param_grid:
+               C: [0.1, 1, 10]
+               kernel: ['linear', 'sigmoid']
+               gamma: ['scale', 'auto']
+           save_model_path: './output'
+           results_path: './output/Output_template_combined.csv'
+      GBC:
+           model_type: 'GradientBoostingClassifier'
+           param_grid:
+               n_estimators: [200, 300]
+               learning_rate: [0.01, 0.5]
+               max_depth: [3, 5, 7]
+           save_model_path: './output'
+           results_path: './output/Output_template_combined.csv'
+# XGBoost:
+# Add parameters here
+column_strains:
+  Serovar: 
+    Heidelberg: 'nzv_data/heidelberg'
+    Enteritidis: 'nzv_data/enteritidis'
+    Typhimurium: 'nzv_data/typhimurium'
+    "I:4,[5],12:i:-": 'nzv_data/4512i'
+    Infantis: 'nzv_data/infantis'
+    Kentucky: 'nzv_data/kentucky'
+    All: 'nzv_data/all'
+
+   

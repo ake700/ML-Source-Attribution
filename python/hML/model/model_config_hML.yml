@@ -1,0 +1,85 @@
+# YAML file for model config
+
+setup:
+    seed:
+    - 34
+    - 42
+    - 777
+    n_jobs:
+    - 7
+    file_paths:
+        data_dir: './data/'
+        allele_path: './data/FN_allele_clean_v2_20240319.csv'
+        graph_path: './data/FN_v2_canada_east_west_graph.pkl'
+        example_outputs: 
+            allele: './output/hML_output/allele_out/'
+            unitig: './output/hML_output/unitig_out/'
+        graph_input_file: './data/FN_v2_canada_east_west_graph.pkl'
+        save_feat_output:
+            allele: './output/hML_output/allele_feat_output.txt'
+            unitig: './output/hML_output/unitig_feat_output.txt'
+    variables:
+        filter_prov: 'Y'
+        stratified: 'Y' 
+        optim: 'N'
+    test_size:
+        - 0.2
+        - 0.25
+        - 0.3
+    filter_threshold:
+        - 2
+        - 3
+        - 5
+        - 10
+    y_col:
+        - Province
+    feat_eng: 
+        - OHE
+        - nzv
+        - nzv_OHE
+        - None
+    models:
+      Random_Forest: 
+            model_type: 'Random Forest'
+            param_grid:
+                n_estimators: [100, 200, 300]
+                max_depth: [10, 20, 30]
+                min_samples_split: [2, 5, 10]
+                min_samples_leaf: [1, 2, 4]
+                criterion: ['gini', 'entropy']
+            save_model_path: './output/hML_output/RandomForest'
+            results_path: './output/Output_template_hML.csv'
+      Logit_Boost:
+            model_type: 'Logit Boost'
+            param_grid:
+                n_estimators: [50, 100, 150]
+                learning_rate: [0.01, 0.1, 1]
+            save_model_path: './output/hML_output/LogitBoost'
+            results_path: './output/Output_template_hML.csv'
+      SVM: 
+           model_type: 'SVM'
+           param_grid:
+               C: [0.1, 1, 10, 100]
+               kernel: ['linear', 'poly', 'rbf', 'sigmoid']
+               gamma: ['scale', 'auto']
+           save_model_path: './output/hML_output/SVM'
+           results_path: './output/Output_template_hML.csv'
+      GBC:
+           model_type: 'GradientBoostingClassifier'
+           param_grid:
+               n_estimators: [100, 200, 300]
+               learning_rate: [0.01, 0.1, 0.5]
+               max_depth: [3, 5, 7]
+           save_model_path: './output/hML_output/GBC'
+           results_path: './output/Output_template_hML.csv'
+column_strains:
+  Serovar: 
+    Heidelberg: 'nzv_data/heidelberg'
+    Enteritidis: 'nzv_data/enteritidis'
+    Typhimurium: 'nzv_data/typhimurium'
+    "I:4,[5],12:i:-": 'nzv_data/4512i'
+    Infantis: 'nzv_data/infantis'
+    Kentucky: 'nzv_data/kentucky'
+    All: 'nzv_data/all'
+
+   
