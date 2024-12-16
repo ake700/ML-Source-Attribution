@@ -1,7 +1,7 @@
 # Machine Learning and Source Attribution
 # Overview
 
-This repository hosts multiple machine learning (ML) frameworks for analyzing data using Python and R (_publications in progress_):
+This repository hosts frameworks for running multiple types of ML models using Python and analyses using R (_publications in progress_):
 
 1. **Flat ML (flatML)**: A "flat" ML approach using customizable model/parameter configuration files.
 2. **Hierarchical ML (hML)**: An extension of the flat ML concept that introduces hierarchical data structures and analyses, based on previous work done ([SionBayliss/HierarchicalML repository](https://github.com/SionBayliss/HierarchicalML/tree/main)).
